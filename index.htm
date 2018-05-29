@@ -6,7 +6,7 @@
         $(function () {
             $("#jsonTxt").keyup(function () {
                 var r=JSON.stringify($(this).val(), null, "\t");
-                $("#jsonDiv").html();
+                $("#jsonDiv").html(r);
             })
         })
     </script>
