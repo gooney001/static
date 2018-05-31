@@ -7,15 +7,33 @@
             $("#jsonTxt").keyup(function () {
                 var r=JSON.stringify(JSON.parse($(this).val()), null, "\t");
                 $("#jsonDiv").html(r);
-            })
-        })
+            });
+            var r=GetRequest();
+            if(r){
+                  $("#jsonDiv").html(JSON.stringify(r));
+            }
+        });
+        
+       function GetRequest() {
+           var url = location.search; //获取url中"?"符后的字串
+           var theRequest = new Object();
+           if (url.indexOf("?") != -1) {
+              var str = url.substr(1);
+              strs = str.split("&");
+              for(var i = 0; i < strs.length; i ++) {
+                 theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+              }
+           }
+           return theRequest;
+        }
+        
     </script>
 </head>
 <body>
-    <textarea id="jsonTxt" cols="20" rows="20">
+    <textarea id="jsonTxt" cols="20" rows="20" style="display:none;">
     </textarea>
     <div id="jsonDiv">
-
+        
     </div>
 </body>
 </html>
